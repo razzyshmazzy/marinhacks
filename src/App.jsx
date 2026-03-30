@@ -16,7 +16,7 @@ const schedule = [
 const faqs = [
   {
     q: 'Who can participate?',
-    a: 'MarinHacks is open to middle and high school students from around the Bay Area. No prior coding experience is required — all skill levels are welcome!',
+    a: 'MarinHacks is open only high school students. Qualified middle school students may appeal once the application is available. All skill levels are welcomed, though we recommend that you come in with a basic knowledge of programming and project management.',
   },
   {
     q: 'Is it free to attend?',
@@ -24,24 +24,32 @@ const faqs = [
   },
   {
     q: 'What should I bring?',
-    a: 'Bring your laptop, charger, and any hardware you plan to use. We will provide WiFi, power strips, and a creative environment to work in.',
+    a: 'You should bring a portable laptop, charger, drinks, and snacks. Please do not bring anything too large, ex. External Monitors, 3d Printers. If you have any questions of what to bring, contact us through email or discord',
   },
   {
     q: 'Can I work alone or do I need a team?',
-    a: 'Both are welcome! You can register solo and find teammates on the day of the event, or come with a pre-formed team of up to 4 members.',
+    a: 'The application is coming soon — project submissions must be in a team of at least 2. Max amount of teamates in a group are 4, no exceptions. If you can not find a teamate, contact us on email or discord and we will try to arrange a teamate.',
   },
   {
     q: 'Where is MarinHacks hosted?',
-    a: 'MarinHacks will be held at the Marin Catholic Library — a spacious, comfortable venue perfect for a full-day hackathon.',
+    a: <>{"MarinHacks will be held at the Marin Catholic's John Paul II Student Center. "}<a href="https://www.marincatholic.org/about/campus-map" target="_blank" rel="noreferrer" className="faq-link">View the campus map</a>.</>,
   },
   {
     q: 'What kind of projects can I build?',
-    a: 'Anything goes — web apps, mobile apps, hardware hacks, games, and more. Projects should relate to the announced theme, revealed at the opening presentation.',
+    a: 'NO HARDWARE HACKS, but besides that, anything goes — web apps, mobile apps, games, and more. Projects should relate to the announced theme, revealed at the opening presentation.',
   },
+  {
+    q: "Is there a theme?",
+    a: "Yes, there is a theme and it will be revealed during the opening ceromony. All projects, (even in different tracks), must relate to the theme. ",
+  },
+  {
+    q: "What are the prizes?",
+    a: "Currently, prizes are not finalized, but except Amazon giftcards, API credits, and cool tech for the winners.",
+  }
 ]
 
 const leads = [
-  { name: 'Nico', role: 'Lead Director', initials: 'N' },
+  { name: 'Nico Zametto', role: 'Lead Director', initials: 'N' },
   { name: 'Stanley Ho', role: 'Lead Director', initials: 'S' },
 ]
 
@@ -208,7 +216,10 @@ function FaqItem({ q, a, delay }) {
         {q}
         <span className={`faq-icon${open ? ' open' : ''}`}>+</span>
       </button>
-      <div className={`faq-answer-wrap${open ? ' open' : ''}`}>
+      <div
+        className="faq-answer-wrap"
+        style={{ maxHeight: open ? contentRef.current?.scrollHeight : 0 }}
+      >
         <div className="faq-answer" ref={contentRef}>{a}</div>
       </div>
     </div>
@@ -248,6 +259,7 @@ export default function App() {
   const [ctaRef, ctaVisible] = useReveal(0.1)
 
   const countdown = useCountdown(EVENT_DATE)
+  const [hoveredEvent, setHoveredEvent] = useState(null)
 
   /* Parallax on hero on mouse move */
   const heroContainerRef = useRef(null)
@@ -273,7 +285,7 @@ export default function App() {
           <li><a href="#team">Team</a></li>
           <li><a href="#sponsors">Sponsors & Judges</a></li>
           <li><a href="#faq">FAQ</a></li>
-          <li><a href="#register" className="nav-cta">Register</a></li>
+          <li><a href="#register" className="nav-cta">Application Coming Soon</a></li>
         </ul>
       </nav>
 
@@ -317,7 +329,7 @@ export default function App() {
 
           <div className="hero-btns">
             <button className="btn-primary" onClick={() => document.getElementById('register').scrollIntoView({ behavior: 'smooth' })}>
-              Register Now
+              Application Coming Soon
             </button>
             <button className="btn-secondary" onClick={() => document.getElementById('about').scrollIntoView({ behavior: 'smooth' })}>
               Learn More
@@ -392,16 +404,34 @@ export default function App() {
               A full day of building, learning, and competing. All times are approximate.
             </p>
           </div>
-          <div className="timeline">
-            {schedule.map((item, i) => (
-              <RevealItem className="timeline-item" key={item.time} style={{ transitionDelay: `${i * 80}ms` }} threshold={0.3}>
-                <div className="timeline-time">{item.time}</div>
-                <div className="timeline-content">
-                  <h4>{item.title}</h4>
-                  <p>{item.desc}</p>
+          <div className="schedule-layout">
+            <div className="timeline">
+              {schedule.map((item, i) => (
+                <div
+                  key={item.time}
+                  onMouseEnter={() => setHoveredEvent(item)}
+                  onMouseLeave={() => setHoveredEvent(null)}
+                >
+                  <RevealItem className={`timeline-item${hoveredEvent === item ? ' hovered' : ''}`} style={{ transitionDelay: `${i * 80}ms` }} threshold={0.3}>
+                    <div className="timeline-time">{item.time}</div>
+                    <div className="timeline-content">
+                      <h4>{item.title}</h4>
+                      <p>{item.desc}</p>
+                    </div>
+                  </RevealItem>
                 </div>
-              </RevealItem>
-            ))}
+              ))}
+            </div>
+
+            <div className="schedule-detail-panel">
+              {hoveredEvent && (
+                <div className="schedule-detail-card" key={hoveredEvent.time}>
+                  <div className="schedule-detail-time">{hoveredEvent.time}</div>
+                  <h3 className="schedule-detail-title">{hoveredEvent.title}</h3>
+                  <p className="schedule-detail-desc">{hoveredEvent.desc}</p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </section>
@@ -470,9 +500,16 @@ export default function App() {
             <h2 className="section-title">Common questions</h2>
           </div>
           <div className="faq-list">
-            {faqs.map((item, i) => (
-              <FaqItem key={item.q} q={item.q} a={item.a} delay={i * 80} />
-            ))}
+            <div className="faq-col">
+              {faqs.filter((_, i) => i % 2 === 0).map((item, i) => (
+                <FaqItem key={item.q} q={item.q} a={item.a} delay={i * 80} />
+              ))}
+            </div>
+            <div className="faq-col">
+              {faqs.filter((_, i) => i % 2 !== 0).map((item, i) => (
+                <FaqItem key={item.q} q={item.q} a={item.a} delay={i * 80 + 40} />
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -486,7 +523,7 @@ export default function App() {
             Spots are limited. Sign up to secure your place at MarinHacks and be the first to hear
             about the theme, sponsors, and updates. More details to come.
           </p>
-          <button className="btn-primary btn-glow">Apply Now — It's Free</button>
+          <button className="btn-primary btn-glow">Application Coming Soon</button>
         </div>
       </section>
 
