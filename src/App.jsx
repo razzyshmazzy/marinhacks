@@ -6,13 +6,19 @@ import stanley from './assets/stanley.jpg'
 const EVENT_DATE = new Date('2026-08-02T08:00:00-08:00')
 
 const schedule = [
-  { time: '8:00 AM', title: 'Check-in', desc: 'Participants arrive and register' },
-  { time: '8:30 AM', title: 'Welcome Presentation', desc: 'Opening remarks, theme reveal, and rules' },
-  { time: '9:00 AM', title: 'Hacking Begins', desc: 'Teams start building their projects' },
-  { time: '12:00 PM', title: 'Lunch', desc: 'Catered lunch break — recharge and network' },
-  { time: '6:00 PM', title: 'Dinner', desc: 'Catered dinner as teams finalize projects' },
-  { time: '6:30 PM', title: 'Judging Starts', desc: 'Judges visit each team for demos' },
-  { time: '7:30 PM', title: 'Winning Presentations', desc: 'Finalists present to the full audience' },
+  { time: '8:00 AM', title: 'Check-in', desc: 'Participants arrive and register', detail: 'Check in at the door of the JPII student center. Remember to bring your participant waiver. Participants can get their setup ready and wait for the opening ceremony.' },
+  { time: '8:15 AM', title: 'Welcome Presentation', desc: 'Opening remarks and introductions', detail: 'Opening remarks and introductions. We will introduce the MarinHacks Team, Sponsors, Judges and more.' },
+  { time: '8:30 AM', title: 'Theme Reveal & Start', desc: 'Theme is announced — hacking begins!', detail: 'We will finally announce the overall theme and tracks. Right after the presentation, Hacking Begins!' },
+  { time: '9:00 AM', title: "Nico Zametto's Workshop", desc: 'How to Hackathon', detail: "Nico Zametto, a 3x Hackathon Winner, will give a workshop and presentation about 'How to Hackathon.' Hackathons are not just about creating a product or service, but presenting it well in the short ammount of demo time." },
+  { time: '10:00 AM', title: 'Chess Tournament', desc: 'Take a break and compete in the chess tournament', detail: 'Starting at 10:00, we will host a chess tournament throughout the duration of the hackathon. You will face off in a single elimination bracket style tournament of 5 min. Blitz games. Winner gets some swag' },
+  { time: '12:00 PM', title: 'Lunch', desc: 'Catered lunch break — recharge and network', detail: 'Lunch will be consisted of assorted sandwhiches and salad. Take a break from all the programming and refuel.' },
+  { time: '1:00 PM', title: 'Boba Break', desc: 'Boba for everyone — keep the energy up', detail: 'Thanks to our local sponsor, Sharetea, those who signed up for a Boba drink during registration will recieve free Boba.' },
+  { time: '3:00 PM', title: 'Code this Algorithm', desc: 'What are you without your agent?', detail: 'What are you without your agent? The era of vibecoding has made us all forget about real coding. In a bracket style first to finish tournament, go 1v1 against fellow programmers to see who can write accurate algorithms quickly, ON PAPER!!!' },
+  { time: '6:00 PM', title: 'Submissions Due', desc: 'All projects must be submitted by 6:00 PM', detail: 'All projects must be submitted on DevPost by 6:00 PM. No exceptions. Any github commit after 6:00 will be a immediate disqualifcation. Of course, you can refine your presentation and demo.' },
+  { time: '6:10 PM', title: 'Pizza Party', desc: 'Catered dinner before the judging starts', detail: 'Eat some Costco pizza before you present to the judges. You better refuel up!' },
+  { time: '6:30 PM', title: 'Judging Starts', desc: 'Judging Schedule released', detail: 'Teams will be called to a room to present in front of 3 judges. Be ready to present what you have been working on for so long.' },
+  { time: '7:30 PM', title: 'Geoguessr & Trivia', desc: 'Tournament and trivia while winners are tallied', detail: 'Hosted by Alex Willard, all participants are invited to participate in the Geoguessr tournament while winners are being tallied up' },
+  { time: '8:00 PM', title: 'Closing Ceremony', desc: 'Winners announced and closing remarks', detail: 'No matter win or lose, you should leave the hackathon feeling proud of what you accomplished in such a short amount of time' },
 ]
 
 const faqs = [
@@ -52,12 +58,12 @@ const faqs = [
 
 const leads = [
   { name: 'Stanley Ho', role: 'Lead Director', initials: 'S', photo: stanley, linkedin: 'https://www.linkedin.com/in/stanley-ho-66748a338/' },
-  { name: 'Nico Zametto', role: 'Lead Director', initials: 'N' },
+  { name: 'Nico Zametto', role: 'Lead Director', initials: 'N', linkedin: 'https://www.linkedin.com/in/nico-zametto-a862643b4/' },
 ]
 
 const organizers = [
   { name: 'Gavin Perry', role: 'Organizer', initials: 'G' },
-  { name: 'Alex Williard', role: 'Organizer', initials: 'A' },
+  { name: 'Alex Willard', role: 'Organizer', initials: 'A', linkedin: 'https://www.linkedin.com/in/alex-willard-14aa5838b/' },
   { name: 'Chase Hatch', role: 'Organizer', initials: 'CH' },
   { name: 'Joseph Colombo', role: 'Volunteer', initials: 'JC' },
 ]
@@ -324,7 +330,6 @@ export default function App() {
           <h1>
             Marin<span className="highlight">Hacks</span>
           </h1>
-          <p className="hero-sub">Bay Area's newest high school hackathon</p>
           <p className="hero-date">August 2, 2026 · Marin Catholic JPII Student Center, Kentfield CA</p>
 
           {/* Countdown Timer */}
@@ -350,15 +355,13 @@ export default function App() {
             </div>
           </div>
 
-          <p className="hero-details-note">More details coming soon — stay tuned!</p>
-
           <div className="hero-btns">
             <a href="https://forms.gle/5eGxKWadr2QK13Lb7" target="_blank" rel="noreferrer" className="btn-primary">
               Apply Now
             </a>
-            <button className="btn-secondary" onClick={() => document.getElementById('about').scrollIntoView({ behavior: 'smooth' })}>
-              Learn More
-            </button>
+            <a href="https://discord.gg/S6rR2MFm6r" target="_blank" rel="noreferrer" className="btn-secondary">
+              Join our Discord
+            </a>
           </div>
         </div>
       </section>
@@ -441,7 +444,9 @@ export default function App() {
                   onMouseEnter={() => setHoveredEvent(item)}
                 >
                   <RevealItem className={`timeline-item${hoveredEvent === item ? ' hovered' : ''}`} style={{ transitionDelay: `${i * 80}ms` }} threshold={0.3}>
-                    <div className="timeline-time">{item.time}</div>
+                    <div className="timeline-time">
+                      {item.time.replace(/(AM|PM)/, '\u2009$1')}
+                    </div>
                     <div className="timeline-content">
                       <h4>{item.title}</h4>
                       <p>{item.desc}</p>
@@ -455,7 +460,7 @@ export default function App() {
               <div className="schedule-detail-card" key={hoveredEvent.time}>
                 <div className="schedule-detail-time">{hoveredEvent.time}</div>
                 <h3 className="schedule-detail-title">{hoveredEvent.title}</h3>
-                <p className="schedule-detail-desc">{hoveredEvent.desc}</p>
+                <p className="schedule-detail-desc">{hoveredEvent.detail ?? hoveredEvent.desc}</p>
               </div>
             </div>
           </div>
@@ -500,12 +505,22 @@ export default function App() {
       <section id="sponsors">
         <div className="container" ref={sponsorsRef}>
           <div className={`reveal${sponsorsVisible ? ' visible' : ''}`}>
-            <p className="section-label">Sponsors & Judges</p>
-            <h2 className="section-title">Coming soon</h2>
-            <p className="section-desc">
-              We are currently reaching out to sponsors and judges for MarinHacks.
-              Interested in sponsoring or judging? Reach out to us — details will be announced soon.
-            </p>
+            <div className="sponsors-layout">
+              <div>
+                <p className="section-label">Sponsors & Judges</p>
+                <h2 className="section-title">Coming soon</h2>
+                <p className="section-desc">
+                  We are currently reaching out to sponsors and judges for MarinHacks.
+                  Details will be announced soon.
+                </p>
+              </div>
+              <div className="sponsors-cta-wrap">
+                <a href="https://forms.gle/XdaH5fmDHNMemKuc8" target="_blank" rel="noreferrer" className="sponsors-cta">
+                  Interested in sponsoring or judging?
+                  <span className="sponsors-cta-apply">Apply Here</span>
+                </a>
+              </div>
+            </div>
             <div className="tbd-placeholder">
               <div className="tbd-box">
                 <span className="tbd-text">Sponsors TBD</span>
@@ -550,6 +565,11 @@ export default function App() {
             about the theme, sponsors, and updates. More details to come.
           </p>
           <a href="https://forms.gle/5eGxKWadr2QK13Lb7" target="_blank" rel="noreferrer" className="btn-primary btn-glow">Apply Now</a>
+          <p className="waiver-note">
+            All participants must print and sign the{' '}
+            <a href="https://docs.google.com/document/d/e/2PACX-1vR5KcvjyTwVs-asI3aMDXpFJMex1yTQ93TRo0HLrkOJDPQEatcM-jcOJCqxUvtTLGlhOPWyEa9Bmvx2/pub" target="_blank" rel="noreferrer" className="faq-link">participant waiver</a>{' '}
+            before entering the venue.
+          </p>
         </div>
       </section>
 
