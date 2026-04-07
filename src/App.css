@@ -846,6 +846,39 @@ section {
   box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
 }
 
+.team-avatar-photo {
+  object-fit: cover;
+  background: none;
+}
+
+.team-linkedin {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+  color: #0a66c2;
+}
+
+.social-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.footer-social-link {
+  color: var(--gray);
+  transition: color 0.2s;
+  display: flex;
+}
+
+.footer-social-link:hover {
+  color: var(--accent);
+}
+
 .team-card h4 {
   font-weight: 600;
   font-size: 0.95rem;
