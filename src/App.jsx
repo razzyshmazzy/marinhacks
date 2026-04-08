@@ -37,7 +37,7 @@ const faqs = [
   },
   {
     q: 'Can I work alone or do I need a team?',
-    a: 'Applications are open — project submissions must be in a team of at least 2. Max amount of teamates in a group are 4, no exceptions. If you can not find a teamate, contact us on email or discord and we will try to arrange a teamate.',
+    a: 'Yes you can work alone! However, we highly encourage you find and work with a team. You learn many valuable lessons through code collaboration and version control.',
   },
   {
     q: 'Where is MarinHacks hosted?',
@@ -45,7 +45,7 @@ const faqs = [
   },
   {
     q: 'What kind of projects can I build?',
-    a: 'NO HARDWARE HACKS, but besides that, anything goes — web apps, mobile apps, games, and more. Projects should relate to the announced theme, revealed at the opening presentation.',
+    a: 'Anything! Websites, software, mobile apps, etc. Hardware Hacks are allowed, but are discouraged since no pre-built hardware projects are allowed and because of the short working time',
   },
   {
     q: "Is there a theme?",
