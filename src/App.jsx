@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import './App.css'
 import jpii from './assets/jpii.jpg'
 import stanley from './assets/stanley.jpg'
+import marinhacksLogo from './assets/marinhacks.png'
 
 const EVENT_DATE = new Date('2026-08-02T08:00:00-08:00')
 
@@ -309,7 +310,7 @@ export default function App() {
 
       {/* NAV */}
       <nav>
-        <div className="nav-logo">Marin<span>Hacks</span></div>
+        <div className="nav-logo"><img src={marinhacksLogo} alt="MarinHacks" className="nav-logo-img" /></div>
         <ul className="nav-links">
           <li><a href="#about">About</a></li>
           <li><a href="#schedule">Schedule</a></li>

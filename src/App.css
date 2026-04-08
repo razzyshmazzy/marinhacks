@@ -232,6 +232,12 @@ nav {
   color: var(--accent);
 }
 
+.nav-logo-img {
+  height: 3.5rem;
+  width: auto;
+  display: block;
+}
+
 .nav-links {
   display: flex;
   gap: 2.5rem;
