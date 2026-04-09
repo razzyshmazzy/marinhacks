@@ -587,9 +587,6 @@ export default function App() {
           <a href="https://discord.gg/S6rR2MFm6r" target="_blank" rel="noreferrer" className="footer-social-link" aria-label="Discord">
             <DiscordIcon />
           </a>
-          <a href="https://www.linkedin.com/in/stanley-ho-66748a338/" target="_blank" rel="noreferrer" className="footer-social-link" aria-label="LinkedIn">
-            <LinkedInIcon />
-          </a>
         </div>
       </footer>
     </>
