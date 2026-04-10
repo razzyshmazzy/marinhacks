@@ -2,6 +2,8 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import './App.css'
 import jpii from './assets/jpii.jpg'
 import stanley from './assets/stanley.jpg'
+import nico from './assets/nico.jpg'
+import adib from './assets/momath.webp'
 import marinhacksLogo from './assets/marinhacks.png'
 
 const EVENT_DATE = new Date('2026-08-02T08:00:00-08:00')
@@ -59,7 +61,7 @@ const faqs = [
 
 const leads = [
   { name: 'Stanley Ho', role: 'Lead Director', initials: 'S', photo: stanley, linkedin: 'https://www.linkedin.com/in/stanley-ho-66748a338/' },
-  { name: 'Nico Zametto', role: 'Lead Director', initials: 'N', linkedin: 'https://www.linkedin.com/in/nico-zametto-a862643b4/' },
+  { name: 'Nico Zametto', role: 'Lead Director', initials: 'N', photo: nico, linkedin: 'https://www.linkedin.com/in/nico-zametto-a862643b4/' },
 ]
 
 const organizers = [
@@ -70,7 +72,7 @@ const organizers = [
 ]
 
 const advisors = [
-  { name: 'Mr. Adib', role: 'Faculty Advisor', initials: 'MA' },
+  { name: 'Mr. Adib', role: 'Faculty Advisor', photo: adib, initials: 'MA' },
 ]
 
 /* ── Countdown hook ── */
